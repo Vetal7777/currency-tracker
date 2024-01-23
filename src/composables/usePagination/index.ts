@@ -10,6 +10,7 @@ export default function usePagination(): Pagination {
   const paginatedData = computed(() =>
     data.value.slice((page.value - 1) * perPage, page.value * perPage)
   )
+  const pagesQuantity = computed(() => Math.ceil(data.value.length / perPage))
 
   const nextPage = () => {
     if (page.value !== Math.ceil(data.value.length / perPage)) {
@@ -36,6 +37,7 @@ export default function usePagination(): Pagination {
     nextPage,
     backPage,
     goToPage,
-    setData
+    setData,
+    pagesQuantity
   }
 }
