@@ -9,7 +9,7 @@ import { onMounted, ref } from 'vue'
 
 export const useExchange = defineStore('exchange', () => {
   const exchangeData = ref<CurrencyExchangeRate[]>([])
-  const dateData = ref<DateData | null>(null)
+  const date = ref(new Date())
 
   const formatDateData = (date: Date): DateData => {
     const data = {
@@ -21,11 +21,7 @@ export const useExchange = defineStore('exchange', () => {
     return data
   }
   const initStore = async () => {
-    const currentDate = new Date()
-
-    dateData.value = formatDateData(currentDate)
-
-    const data = await fetchExchangeData(dateData.value)
+    const data = await fetchExchangeData(formatDateData(date.value))
 
     if (data) {
       exchangeData.value = data
@@ -53,12 +49,12 @@ export const useExchange = defineStore('exchange', () => {
   }
 
   onMounted(() => {
-    const storeNotInit = !dateData.value && !exchangeData.value.length
+    const storeNotInit = !exchangeData.value.length
 
     if (storeNotInit) {
       initStore()
     }
   })
 
-  return { exchangeData, dateData }
+  return { exchangeData, date }
 })
