@@ -1,25 +1,15 @@
+import { useDateFormatter } from '@/composables/useDateFormatter'
 import { getCurrenciesExchangeRatesFromApi } from '@/services/exchangeApi'
-import type {
-  CurrencyExchangeRate,
-  DateData
-} from '@/services/exchangeApi/types'
-import moment from 'moment'
+import type { CurrencyExchangeRate } from '@/services/exchangeApi/types'
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 
 export const useExchange = defineStore('exchange', () => {
+  const dateFormatter = useDateFormatter()
+
   const exchangeData = ref<CurrencyExchangeRate[]>([])
   const date = ref(new Date())
 
-  const formatDateData = (date: Date): DateData => {
-    const data = {
-      year: String(moment(date).year()),
-      month: formatNumberWithZero(moment(date).month() + 1),
-      day: formatNumberWithZero(moment(date).date())
-    }
-
-    return data
-  }
   const updateExchangeData = async () => {
     const data = await fetchExchangeData()
 
@@ -27,19 +17,11 @@ export const useExchange = defineStore('exchange', () => {
       exchangeData.value = data
     }
   }
-  const formatNumberWithZero = (number: number) => {
-    let strNumber = String(number)
 
-    if (strNumber.length < 2) {
-      strNumber = '0' + strNumber
-    }
-
-    return strNumber
-  }
   const fetchExchangeData = async () => {
     try {
       const { data } = await getCurrenciesExchangeRatesFromApi(
-        formatDateData(date.value)
+        dateFormatter.formatDateData(date.value)
       )
 
       return data
