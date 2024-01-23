@@ -1,11 +1,15 @@
 export type GetCurrenciesExchangeRates = (
   dateData: DateData
-) => Promise<CurrencyExchangeRate[]>
+) => Promise<GetCurrenciesExchangeRatesResponse>
 
 export type DateData = {
   year: string
   month: string
   day: string
+}
+
+export type GetCurrenciesExchangeRatesResponse = {
+  data: CurrencyExchangeRate[]
 }
 
 export type CurrencyExchangeRate = {
