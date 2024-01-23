@@ -21,7 +21,7 @@ export const useExchange = defineStore('exchange', () => {
     return data
   }
   const initStore = async () => {
-    const data = await fetchExchangeData(formatDateData(date.value))
+    const data = await fetchExchangeData()
 
     if (data) {
       exchangeData.value = data
@@ -36,9 +36,11 @@ export const useExchange = defineStore('exchange', () => {
 
     return strNumber
   }
-  const fetchExchangeData = async (date: DateData) => {
+  const fetchExchangeData = async () => {
     try {
-      const { data } = await getCurrenciesExchangeRatesFromApi(date)
+      const { data } = await getCurrenciesExchangeRatesFromApi(
+        formatDateData(date.value)
+      )
 
       return data
     } catch (error) {
