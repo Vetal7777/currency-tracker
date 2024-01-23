@@ -5,7 +5,7 @@ import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 
 export const useExchange = defineStore('exchange', () => {
-  const dateFormatter = useDateFormatter()
+  const { formatDateData } = useDateFormatter()
 
   const exchangeData = ref<CurrencyExchangeRate[]>([])
   const date = ref(new Date())
@@ -21,7 +21,7 @@ export const useExchange = defineStore('exchange', () => {
   const fetchExchangeData = async () => {
     try {
       const { data } = await getCurrenciesExchangeRatesFromApi(
-        dateFormatter.formatDateData(date.value)
+        formatDateData(date.value)
       )
 
       return data
