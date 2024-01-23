@@ -1,12 +1,9 @@
 import { axiosInstance } from '@/services/config'
-import { GetCurreniesFromApi } from './types'
+import { GetCurrenciesExchangeRates } from './types'
 
-export const getCurreniesFromApi: GetCurreniesFromApi = async ({
-  year,
-  month,
-  day
-}) => {
-  return await axiosInstance.get(
-    `/NBUStatService/v1/statdirectory/exchange?date=${year}${month}${day}&json`
-  )
-}
+export const getCurrenciesExchangeRatesFromApi: GetCurrenciesExchangeRates =
+  async ({ year, month, day }) => {
+    return await axiosInstance.get(
+      `/NBUStatService/v1/statdirectory/exchange?date=${year}${month}${day}&json`
+    )
+  }

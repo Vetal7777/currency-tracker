@@ -1,4 +1,4 @@
-export type GetCurreniesFromApi = (
+export type GetCurrenciesExchangeRates = (
   dateData: DateData
 ) => Promise<CurrencyExchangeRate[]>
 
