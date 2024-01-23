@@ -5,7 +5,7 @@ import type {
 } from '@/services/exchangeApi/types'
 import moment from 'moment'
 import { defineStore } from 'pinia'
-import { onMounted, ref } from 'vue'
+import { ref, watch } from 'vue'
 
 export const useExchange = defineStore('exchange', () => {
   const exchangeData = ref<CurrencyExchangeRate[]>([])
@@ -20,7 +20,7 @@ export const useExchange = defineStore('exchange', () => {
 
     return data
   }
-  const initStore = async () => {
+  const updateExchangeData = async () => {
     const data = await fetchExchangeData()
 
     if (data) {
@@ -50,13 +50,13 @@ export const useExchange = defineStore('exchange', () => {
     }
   }
 
-  onMounted(() => {
-    const storeNotInit = !exchangeData.value.length
-
-    if (storeNotInit) {
-      initStore()
-    }
-  })
+  watch(
+    () => date.value,
+    () => {
+      updateExchangeData()
+    },
+    { immediate: true }
+  )
 
   return { exchangeData, date }
 })
