@@ -25,7 +25,6 @@ export const useExchangeStore = defineStore('exchange', () => {
         const editedData = editedDataArray.find((data) => data.cc === item.cc)
 
         if (editedData) {
-          debugger
           return editedData
         } else {
           return item
@@ -52,7 +51,6 @@ export const useExchangeStore = defineStore('exchange', () => {
 
     if (currentDateArray.length) {
       if (currentDateArray.find((item) => item.cc === cc)) {
-        debugger
         currentDateArray = currentDateArray.map((item) =>
           item.cc === cc ? { ...data, rate } : item
         )
