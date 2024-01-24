@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid grid-cols-2 gap-4 overflow-hidden rounded-xl border p-3 text-xs"
+    class="grid min-w-96 grid-cols-2 gap-4 overflow-hidden rounded-xl border p-3 text-xs"
   >
     <!-- Filter by name -->
     <div class="col-span-2 flex items-center justify-start gap-5">
