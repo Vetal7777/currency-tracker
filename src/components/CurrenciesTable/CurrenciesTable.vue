@@ -2,8 +2,8 @@
   <div
     class="grid grid-cols-2 gap-4 overflow-hidden rounded-xl border p-3 text-xs"
   >
+    <!-- Filter by name -->
     <div class="col-span-2 flex items-center justify-start gap-5">
-      <!-- Filter by name -->
       <div>Filter by Name:</div>
       <input
         v-model="filterData"
