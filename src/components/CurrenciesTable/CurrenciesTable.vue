@@ -1,5 +1,16 @@
 <template>
-  <div class="grid grid-cols-2 overflow-hidden rounded-xl border p-3 text-xs">
+  <div
+    class="grid grid-cols-2 gap-4 overflow-hidden rounded-xl border p-3 text-xs"
+  >
+    <div class="col-span-2 flex items-center justify-start gap-5">
+      <!-- Filter by name -->
+      <div>Filter by Name:</div>
+      <input
+        v-model="filterData"
+        class="find flex-grow rounded-xl border border-nav-gray bg-transparent px-5 py-1 text-xs text-nav-gray outline-none"
+        type="text"
+      />
+    </div>
     <!-- Table Head -->
     <div class="col-span-2 grid grid-cols-2">
       <div class="td bg-base-red text-white">Currecy Name</div>
@@ -34,7 +45,7 @@ import { CurrencyExchangeRate } from '@/services/exchangeApi/types'
 import { useExchangeStore } from '@/store/exchange'
 
 import { storeToRefs } from 'pinia'
-import { computed, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const exchangeStore = useExchangeStore()
 const pagination = usePagination()
@@ -42,6 +53,13 @@ const pagination = usePagination()
 const { exchangeData } = storeToRefs(exchangeStore)
 const { goToPage, setData } = pagination
 
+const filterData = ref('')
+
+const filteredList = computed(() =>
+  exchangeData.value.filter((rate) =>
+    rate.cc.toLowerCase().includes(filterData.value.toLowerCase())
+  )
+)
 const page = computed(() => pagination.page.value)
 const paginatedData = computed<CurrencyExchangeRate[]>(
   () => pagination.paginatedData.value as CurrencyExchangeRate[]
@@ -51,9 +69,9 @@ const showPagination = computed(() => Boolean(pagesQuantity.value - 1))
 
 // If list edit reset data
 watch(
-  () => exchangeData.value,
+  () => filteredList.value,
   () => {
-    setData(exchangeData.value)
+    setData(filteredList.value)
   },
   { immediate: true }
 )
@@ -62,5 +80,11 @@ watch(
 <style lang="scss" scoped>
 .td {
   @apply rounded-xl px-5 py-3;
+}
+
+.find:focus {
+  --tw-ring-color: '#ffff';
+  @apply border-nav-gray outline-none
+    outline-0 ring-offset-0 ring-offset-white;
 }
 </style>

@@ -8,8 +8,17 @@
 import CurrenciesTable from '@/components/CurrenciesTable/CurrenciesTable.vue'
 import { useExchangeStore } from '@/store/exchange'
 import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
 
 const exchangeStore = useExchangeStore()
 
-const { exchangeData } = storeToRefs(exchangeStore)
+const { exchangeData, date } = storeToRefs(exchangeStore)
+
+const setTodayDate = () => {
+  date.value = new Date()
+}
+
+onMounted(() => {
+  setTodayDate()
+})
 </script>

@@ -1,6 +1,8 @@
 import { DateData } from '@/services/exchangeApi/types'
 import moment from 'moment'
 
+export const FULL_DATE_IN_NUMBER_FORMAT = 'L'
+
 export const useDateFormatter = () => {
   const formatDateData = (date: Date): DateData => {
     const data = {
