@@ -1,7 +1,11 @@
 export enum RouterPath {
-  home = '/'
+  home = '/',
+  edited = '/edited',
+  search = '/search'
 }
 
 export enum RouterName {
-  home = 'home'
+  home = 'home',
+  edited = 'edited',
+  search = 'search'
 }
