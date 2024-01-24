@@ -2,9 +2,13 @@
   <div
     class="flex min-h-screen w-screen flex-col gap-6 bg-white p-4 text-black dark:bg-black dark:text-white"
   >
-    <NavBar />
+    <!-- App header -->
+    <div class="flex items-center justify-between">
+      <NavBar />
+      <CurrentDate />
+    </div>
+    <!-- Router View -->
     <RouterView v-slot="{ Component }">
-      <!-- Route View -->
       <Transition name="slide" mode="out-in">
         <Component :is="Component" />
       </Transition>
@@ -13,6 +17,7 @@
 </template>
 
 <script lang="ts" setup>
+import CurrentDate from '@/components/CurrentDate.vue'
 import NavBar from '@/components/NavBar.vue'
 </script>
 

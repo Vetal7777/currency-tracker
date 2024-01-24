@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 overflow-hidden rounded-xl border p-1 text-xs">
+  <div class="grid grid-cols-2 overflow-hidden rounded-xl border p-3 text-xs">
     <!-- Table Head -->
     <div class="col-span-2 grid grid-cols-2">
       <div class="td bg-base-red text-white">Currecy Name</div>

@@ -22,5 +22,7 @@ export const useDateFormatter = () => {
     return strNumber
   }
 
-  return { formatDateData }
+  const formatFullDate = (date: Date) => moment(date).format('LL')
+
+  return { formatDateData, formatFullDate }
 }
