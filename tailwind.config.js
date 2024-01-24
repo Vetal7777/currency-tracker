@@ -16,7 +16,8 @@ export default {
         'base-light': '#7E7E7E',
         'border-light': '#C7C7CB',
         'border-dark': '#4D4D4D',
-        'nav-gray': '#EDE8ED'
+        'nav-gray': '#EDE8ED',
+        'base-red': '#EB5545'
       }
     }
   },

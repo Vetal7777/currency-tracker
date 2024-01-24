@@ -1,9 +1,15 @@
 <template>
-  <div>
-    <div>Home</div>
+  <div class="flex justify-center">
+    <CurrenciesTable v-if="exchangeData.length" />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CurrenciesTable from '@/components/CurrenciesTable/CurrenciesTable.vue'
+import { useExchangeStore } from '@/store/exchange'
+import { storeToRefs } from 'pinia'
 
-<style lang="scss" scoped></style>
+const exchangeStore = useExchangeStore()
+
+const { exchangeData } = storeToRefs(exchangeStore)
+</script>

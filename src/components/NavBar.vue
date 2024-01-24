@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-border-light dark:border-border-dark mx-auto flex w-min overflow-hidden rounded-lg border bg-transparent text-xs"
+    class="border-border-light dark:border-border-dark mx-auto flex w-min overflow-hidden rounded-lg border bg-transparent p-1 text-xs"
   >
     <template v-for="({ name }, index) in routes">
       <div

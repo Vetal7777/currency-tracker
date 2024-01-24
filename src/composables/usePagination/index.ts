@@ -1,8 +1,10 @@
 import { computed, ref } from 'vue'
 import { Pagination } from './types'
 
+const START_PAGE = 1
+
 export default function usePagination(): Pagination {
-  const page = ref(1)
+  const page = ref(START_PAGE)
   const data = ref<unknown[]>([])
 
   const perPage = 10
@@ -18,11 +20,12 @@ export default function usePagination(): Pagination {
     }
   }
   const backPage = () => {
-    if (page.value !== 1) {
+    if (page.value !== START_PAGE) {
       page.value -= 1
     }
   }
   const setData = (array: unknown[]) => {
+    page.value = START_PAGE
     data.value = array
   }
   const goToPage = (numPage: number) => {

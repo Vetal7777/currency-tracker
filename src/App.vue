@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex min-h-screen w-screen flex-col justify-between bg-white p-4 text-black dark:bg-black dark:text-white"
+    class="flex min-h-screen w-screen flex-col gap-6 bg-white p-4 text-black dark:bg-black dark:text-white"
   >
     <NavBar />
     <RouterView v-slot="{ Component }">
@@ -14,10 +14,6 @@
 
 <script lang="ts" setup>
 import NavBar from '@/components/NavBar.vue'
-
-import { useExchange } from '@/store/exchange'
-
-useExchange()
 </script>
 
 <style lang="scss">

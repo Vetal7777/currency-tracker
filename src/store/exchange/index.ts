@@ -4,7 +4,7 @@ import type { CurrencyExchangeRate } from '@/services/exchangeApi/types'
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 
-export const useExchange = defineStore('exchange', () => {
+export const useExchangeStore = defineStore('exchange', () => {
   const { formatDateData } = useDateFormatter()
 
   const exchangeData = ref<CurrencyExchangeRate[]>([])
