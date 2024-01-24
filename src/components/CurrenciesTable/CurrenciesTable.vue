@@ -15,6 +15,7 @@
       :title="cc"
       :value="rate"
       :key="index"
+      @updateRate="(value) => updateExchangeDataItem(cc, value)"
     />
     <!-- Pagination -->
     <div
@@ -45,6 +46,7 @@ const exchangeStore = useExchangeStore()
 const pagination = usePagination()
 
 const { exchangeData } = storeToRefs(exchangeStore)
+const { updateExchangeDataItem } = exchangeStore
 const { goToPage, setData } = pagination
 
 const filterData = ref('')
