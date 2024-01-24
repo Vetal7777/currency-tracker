@@ -1,17 +1,24 @@
 <template>
   <div
-    class="flex min-h-screen w-screen flex-col justify-between bg-white text-black dark:bg-black dark:text-white"
+    class="flex min-h-screen w-screen flex-col justify-between bg-white p-4 text-black dark:bg-black dark:text-white"
   >
-    <div class="p-5">
-      <RouterView v-slot="{ Component }">
-        <!-- Route View -->
-        <Transition name="slide" mode="out-in">
-          <Component :is="Component" />
-        </Transition>
-      </RouterView>
-    </div>
+    <NavBar />
+    <RouterView v-slot="{ Component }">
+      <!-- Route View -->
+      <Transition name="slide" mode="out-in">
+        <Component :is="Component" />
+      </Transition>
+    </RouterView>
   </div>
 </template>
+
+<script lang="ts" setup>
+import NavBar from '@/components/NavBar.vue'
+
+import { useExchange } from '@/store/exchange'
+
+useExchange()
+</script>
 
 <style lang="scss">
 // Router transition

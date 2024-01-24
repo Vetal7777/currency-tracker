@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div>Home</div>
+  <div class="grid grid-cols-2">
+    <div class="border"></div>
   </div>
 </template>
 

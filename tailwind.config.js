@@ -12,7 +12,11 @@ export default {
     extend: {
       colors: {
         'vtd-primary': colors.sky, // Light mode Datepicker color
-        'vtd-secondary': colors.gray
+        'vtd-secondary': colors.gray,
+        'base-light': '#7E7E7E',
+        'border-light': '#C7C7CB',
+        'border-dark': '#4D4D4D',
+        'nav-gray': '#EDE8ED'
       }
     }
   },
