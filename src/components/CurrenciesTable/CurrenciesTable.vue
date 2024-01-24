@@ -3,14 +3,7 @@
     class="grid min-w-96 grid-cols-2 gap-4 overflow-hidden rounded-xl border p-3 text-xs"
   >
     <!-- Filter by name -->
-    <div class="col-span-2 flex items-center justify-start gap-5">
-      <div>Filter by Name:</div>
-      <input
-        v-model="filterData"
-        class="find flex-grow rounded-xl border border-nav-gray bg-transparent px-5 py-1 text-xs text-nav-gray outline-none"
-        type="text"
-      />
-    </div>
+    <FilterInput v-model="filterData" />
     <!-- Table Head -->
     <div class="col-span-2 grid grid-cols-2">
       <div class="td bg-base-red text-white">Currecy Name</div>
@@ -38,6 +31,7 @@
 </template>
 
 <script setup lang="ts">
+import FilterInput from '@/components/CurrenciesTable/FilterInput/FilterInput.vue'
 import Pagination from '@/components/CurrenciesTable/Pagination/Pagination.vue'
 import Row from '@/components/CurrenciesTable/Row/Row.vue'
 import usePagination from '@/composables/usePagination'
@@ -80,11 +74,5 @@ watch(
 <style lang="scss" scoped>
 .td {
   @apply rounded-xl px-5 py-3;
-}
-
-.find:focus {
-  --tw-ring-color: '#ffff';
-  @apply border-nav-gray outline-none
-    outline-0 ring-offset-0 ring-offset-white;
 }
 </style>
