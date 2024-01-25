@@ -1,18 +1,34 @@
-# Vue 3 + TypeScript + Vite
+# Vue.js Currency Exchange Rate SPA
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This Vue.js application serves as a Single Page Application (SPA) designed to display currency exchange rates. It utilizes the National Bank of Ukraine (NBU) API as its data source, fetching information from the NBUStatService endpoint with the date parameter acting as a filter for currency rates on specific dates.
 
-## Recommended IDE Setup
+## Key Features
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+1. **Multiple Pages:**
+   - **Home:** Displays current currency exchange rates.
+   - **Changed Rates:** Lists currency rates modified by the user.
+   - **Search Rates:** Allows users to view currency rates for a selected date, with a date filter.
 
-## Type Support For `.vue` Imports in TS
+2. **Navigation:**
+   - The site header includes menu items for Home, Changed Rates, and Search Rates.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+3. **Currency List Interaction:**
+   - Clicking on a currency navigates to its page for editing.
+   - Edited currency rates are saved locally and appear on the Changed Rates page.
+   - Editing and saving currency rates occur locally without server communication.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+4. **Pagination:**
+   - Pagination is implemented on pages displaying currency lists, with 10 currencies per page.
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+5. **Local Search:**
+   - Users can search for a currency by its name locally on any page with a currency list.
+
+## Project setup
+```
+yarn
+```
+
+### Compiles and hot-reloads for development
+```
+yarn dev
+```
