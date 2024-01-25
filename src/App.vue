@@ -3,7 +3,7 @@
     class="flex min-h-screen w-screen flex-col gap-6 bg-white p-4 text-black dark:bg-black dark:text-white"
   >
     <!-- App header -->
-    <div class="flex items-center justify-between">
+    <div class="flex flex-wrap items-center justify-between gap-5">
       <NavBar />
       <CurrentDate />
     </div>

@@ -1,6 +1,10 @@
 <template>
   <div class="flex justify-center">
-    <CurrenciesTable v-if="exchangeData.length" />
+    <CurrenciesTable
+      v-if="exchangeData.length"
+      :list="exchangeData"
+      @updateRate="({ cc, value }) => updateExchangeDataItem(cc, value, date)"
+    />
   </div>
 </template>
 
@@ -12,6 +16,7 @@ import { onMounted } from 'vue'
 
 const exchangeStore = useExchangeStore()
 
+const { updateExchangeDataItem } = exchangeStore
 const { exchangeData, date } = storeToRefs(exchangeStore)
 
 const setTodayDate = () => {

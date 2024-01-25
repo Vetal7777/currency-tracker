@@ -8,7 +8,11 @@
         class="w-min"
       />
     </div>
-    <CurrenciesTable v-if="exchangeData.length" />
+    <CurrenciesTable
+      v-if="exchangeData.length"
+      :list="exchangeData"
+      @updateRate="({ cc, value }) => updateExchangeDataItem(cc, value, date)"
+    />
   </div>
 </template>
 
@@ -26,6 +30,7 @@ const DATEPICKER_DATE_TYPE = 'YYYY-MM-DD HH:mm:ss'
 
 const exchangeStore = useExchangeStore()
 
+const { updateExchangeDataItem } = exchangeStore
 const { exchangeData, date } = storeToRefs(exchangeStore)
 
 const datePickerValue = ref(moment().format(DATEPICKER_DATE_TYPE))

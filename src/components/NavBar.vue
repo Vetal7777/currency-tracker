@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex w-min overflow-hidden rounded-lg border border-border-light bg-transparent p-1 text-xs dark:border-nav-gray"
+    class="flex w-min overflow-hidden rounded-lg border border-border-light bg-transparent p-1 text-xs shadow dark:border-nav-gray"
   >
     <template v-for="({ name }, index) in routes">
       <button

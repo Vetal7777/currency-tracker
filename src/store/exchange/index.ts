@@ -42,23 +42,26 @@ export const useExchangeStore = defineStore('exchange', () => {
       exchangeDataInit.value = data
     }
   }
-  const updateExchangeDataItem = (cc: string, rate: number) => {
-    const key = moment(date.value).format(FULL_DATE_IN_NUMBER_FORMAT)
+  const updateExchangeDataItem = (
+    cc: string,
+    rate: number,
+    currentDate: Date
+  ) => {
+    const key = moment(currentDate).format(FULL_DATE_IN_NUMBER_FORMAT)
     let currentDateArray = editedexchangeData.value[key] || []
-    const data = exchangeDataInit.value.find(
+    const currentDateData = exchangeDataInit.value.find(
       (item) => item.cc === cc
     ) as CurrencyExchangeRate
 
-    if (currentDateArray.length) {
-      if (currentDateArray.find((item) => item.cc === cc)) {
-        currentDateArray = currentDateArray.map((item) =>
-          item.cc === cc ? { ...data, rate } : item
-        )
-      } else {
-        currentDateArray.push({ ...data, rate })
-      }
+    const updateItem = { ...currentDateData, rate }
+    const existingItemIndex = currentDateArray.findIndex(
+      (item) => item.cc === cc
+    )
+
+    if (existingItemIndex !== -1) {
+      currentDateArray[existingItemIndex] = updateItem
     } else {
-      currentDateArray.push({ ...data, rate })
+      currentDateArray.push(updateItem)
     }
 
     editedexchangeData.value = {

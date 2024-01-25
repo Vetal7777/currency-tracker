@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid min-w-96 grid-cols-2 gap-4 overflow-hidden rounded-xl border p-3 text-xs"
+    class="grid min-w-96 grid-cols-2 gap-4 overflow-hidden rounded-xl border p-3 text-xs shadow-lg"
   >
     <!-- Filter by name -->
     <FilterInput v-model="filterData" />
@@ -15,7 +15,7 @@
       :title="cc"
       :value="rate"
       :key="index"
-      @updateRate="(value) => updateExchangeDataItem(cc, value)"
+      @updateRate="(value) => $emit('updateRate', { cc, value })"
     />
     <!-- Pagination -->
     <div
@@ -36,23 +36,19 @@ import FilterInput from '@/components/CurrenciesTable/FilterInput/FilterInput.vu
 import Pagination from '@/components/CurrenciesTable/Pagination/Pagination.vue'
 import Row from '@/components/CurrenciesTable/Row/Row.vue'
 import usePagination from '@/composables/usePagination'
-import { CurrencyExchangeRate } from '@/services/exchangeApi/types'
-import { useExchangeStore } from '@/store/exchange'
-
-import { storeToRefs } from 'pinia'
+import type { CurrencyExchangeRate } from '@/services/exchangeApi/types'
 import { computed, ref, watch } from 'vue'
+import type { CurrenciesTableProps } from './types'
 
-const exchangeStore = useExchangeStore()
 const pagination = usePagination()
+const props = defineProps<CurrenciesTableProps>()
 
-const { exchangeData } = storeToRefs(exchangeStore)
-const { updateExchangeDataItem } = exchangeStore
 const { goToPage, setData } = pagination
 
 const filterData = ref('')
 
 const filteredList = computed(() =>
-  exchangeData.value.filter((rate) =>
+  props.list.filter((rate) =>
     rate.cc.toLowerCase().includes(filterData.value.toLowerCase())
   )
 )
