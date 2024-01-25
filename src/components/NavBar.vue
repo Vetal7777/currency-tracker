@@ -1,12 +1,12 @@
 <template>
   <div
-    class="flex w-min overflow-hidden rounded-lg border border-nav-gray bg-transparent p-1 text-xs"
+    class="flex w-min overflow-hidden rounded-lg border border-border-light bg-transparent p-1 text-xs dark:border-nav-gray"
   >
     <template v-for="({ name }, index) in routes">
       <button
         v-if="name"
         :class="[
-          'cursor-pointer px-4 py-1 text-nav-gray transition-all hover:opacity-70 ',
+          'cursor-pointer px-4 py-1 text-border-light transition-all hover:opacity-70 dark:text-nav-gray ',
           { active: isActiveRoute(name) }
         ]"
         :key="index"
@@ -38,6 +38,6 @@ const isActiveRoute = (name: RouteRecordName) =>
 
 <style lang="scss" scoped>
 .active {
-  @apply cursor-default rounded border-none bg-nav-gray text-black hover:opacity-100;
+  @apply cursor-default rounded border-none bg-border-light text-white hover:opacity-100 dark:bg-nav-gray dark:text-black;
 }
 </style>

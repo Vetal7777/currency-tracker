@@ -15,7 +15,7 @@
         :value="value"
       />
       <button
-        class="edit-status absolute right-5 flex h-full cursor-pointer items-center transition-all"
+        class="edit-status absolute right-5 flex h-full cursor-pointer items-center text-white transition-all"
         @click="editRate"
       >
         Save
@@ -26,7 +26,7 @@
       <div class="td text-base-red">{{ title }}</div>
       <div class="td">{{ value }}</div>
       <button
-        class="edit-status absolute right-5 flex h-full translate-x-32 cursor-pointer items-center transition-all"
+        class="edit-status absolute right-5 flex h-full translate-x-32 cursor-pointer items-center text-white transition-all"
         @click="editStatus = true"
       >
         Edit
@@ -75,7 +75,7 @@ watch(
   &.simple:hover {
     @apply cursor-pointer hover:bg-base-red;
     .td {
-      @apply dark:text-white;
+      @apply text-white;
     }
     .edit-status {
       @apply translate-x-0;

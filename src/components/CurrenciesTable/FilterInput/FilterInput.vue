@@ -4,7 +4,7 @@
     <input
       v-model="model"
       placeholder="Currecy name"
-      class="find flex-grow rounded-xl border border-nav-gray bg-transparent px-5 py-1 text-xs text-nav-gray outline-none placeholder:text-nav-gray"
+      class="find flex-grow rounded-xl border border-black bg-transparent px-5 py-1 text-xs text-black outline-none placeholder:text-black dark:border-nav-gray dark:text-nav-gray dark:placeholder:text-nav-gray"
       type="text"
     />
   </div>
