@@ -13,12 +13,12 @@ export const useExchangeStore = defineStore('exchange', () => {
   const { formatDateData } = useDateFormatter()
 
   const exchangeDataInit = ref<CurrencyExchangeRate[]>([])
-  const editedexchangeData = ref<EditedCurrencyExchangeRateData>({})
+  const editedExchangeData = ref<EditedCurrencyExchangeRateData>({})
   const date = ref(new Date())
 
   const exchangeData = computed(() => {
     const currentDate = moment(date.value).format(FULL_DATE_IN_NUMBER_FORMAT)
-    const editedDataArray = editedexchangeData.value[currentDate]
+    const editedDataArray = editedExchangeData.value[currentDate]
 
     if (editedDataArray) {
       return exchangeDataInit.value.map((item) => {
@@ -48,7 +48,7 @@ export const useExchangeStore = defineStore('exchange', () => {
     currentDate: Date
   ) => {
     const key = moment(currentDate).format(FULL_DATE_IN_NUMBER_FORMAT)
-    let currentDateArray = editedexchangeData.value[key] || []
+    let currentDateArray = editedExchangeData.value[key] || []
     const currentDateData = exchangeDataInit.value.find(
       (item) => item.cc === cc
     ) as CurrencyExchangeRate
@@ -64,10 +64,14 @@ export const useExchangeStore = defineStore('exchange', () => {
       currentDateArray.push(updateItem)
     }
 
-    editedexchangeData.value = {
-      ...editedexchangeData.value,
+    const newEditedExchangeData = {
+      ...editedExchangeData.value,
       [key]: currentDateArray
     }
+
+    editedExchangeData.value = Object.fromEntries(
+      Object.entries(newEditedExchangeData).sort()
+    )
   }
 
   const fetchExchangeData = async () => {
@@ -91,5 +95,5 @@ export const useExchangeStore = defineStore('exchange', () => {
     },
     { immediate: true }
   )
-  return { exchangeData, date, updateExchangeDataItem, editedexchangeData }
+  return { exchangeData, date, updateExchangeDataItem, editedExchangeData }
 })

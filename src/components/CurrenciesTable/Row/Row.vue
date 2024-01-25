@@ -2,16 +2,16 @@
   <div
     :class="[
       'row relative col-span-2 grid grid-cols-2 overflow-hidden rounded-xl bg-transparent transition-all',
-      { simple: !editStatus, edit: editStatus }
+      { simple: !editMode, edit: editMode }
     ]"
   >
     <!-- Edit status -->
-    <template v-if="editStatus">
+    <template v-if="editMode">
       <div class="td text-base-red">{{ title }}</div>
       <input
         ref="input"
         type="number"
-        class="td input w-min border-none bg-transparent px-5 py-3 text-xs"
+        class="td input w-min max-w-32 overflow-hidden border-none bg-transparent px-5 py-3 text-xs"
         :value="value"
       />
       <button
@@ -24,10 +24,10 @@
     <!-- Simple status -->
     <template v-else>
       <div class="td text-base-red">{{ title }}</div>
-      <div class="td">{{ value }}</div>
+      <div class="td max-w-32 overflow-hidden">{{ value }}</div>
       <button
         class="edit-status absolute right-5 flex h-full translate-x-32 cursor-pointer items-center text-white transition-all"
-        @click="editStatus = true"
+        @click="$emit('edit', true)"
       >
         Edit
       </button>
@@ -43,22 +43,21 @@ const props = defineProps<RowProps>()
 const emit = defineEmits()
 
 const input = ref<HTMLInputElement | null>(null)
-const editStatus = ref(false)
 
 const editRate = () => {
   const value = Number(input.value?.value)
 
   if (value !== props.value) {
-    emit('updateRate', input.value?.value)
+    emit('updateRate', value)
   }
-  editStatus.value = false
+  emit('edit', false)
 }
 
 // set Focus on input
 watch(
-  () => editStatus.value,
+  () => props.editMode,
   async () => {
-    if (editStatus.value) {
+    if (props.editMode) {
       await nextTick()
       input.value?.focus()
     }

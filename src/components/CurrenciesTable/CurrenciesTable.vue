@@ -15,6 +15,8 @@
       :title="cc"
       :value="rate"
       :key="index"
+      :editMode="isEditMode(index)"
+      @edit="(status) => onEdit(status, index)"
       @updateRate="(value) => $emit('updateRate', { cc, value })"
     />
     <!-- Pagination -->
@@ -46,18 +48,29 @@ const props = defineProps<CurrenciesTableProps>()
 const { goToPage, setData } = pagination
 
 const filterData = ref('')
+const editDataIndex = ref<number | null>(null)
 
 const filteredList = computed(() =>
   props.list.filter((rate) =>
     rate.cc.toLowerCase().includes(filterData.value.toLowerCase())
   )
 )
+
 const page = computed(() => pagination.page.value)
 const paginatedData = computed<CurrencyExchangeRate[]>(
   () => pagination.paginatedData.value as CurrencyExchangeRate[]
 )
 const pagesQuantity = computed(() => pagination.pagesQuantity.value)
 const showPagination = computed(() => Boolean(pagesQuantity.value - 1))
+
+const isEditMode = (index: number) => editDataIndex.value === index
+const onEdit = (status: boolean, index: number) => {
+  if (status) {
+    editDataIndex.value = index
+  } else {
+    editDataIndex.value = null
+  }
+}
 
 // If list edit reset data
 watch(

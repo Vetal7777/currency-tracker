@@ -25,7 +25,6 @@ export default function usePagination(): Pagination {
     }
   }
   const setData = (array: unknown[]) => {
-    page.value = START_PAGE
     data.value = array
   }
   const goToPage = (numPage: number) => {
